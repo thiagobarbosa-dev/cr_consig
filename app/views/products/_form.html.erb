@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="col-lg-10">
+    <div class="card-body">
+      <%= form_with(model: product) do |form| %>
+        <% if product.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+            <ul>
+              <% product.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= form.label :name, style: "display: block" %>
+          <%= form.text_field :name, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :active_ingredient, style: "display: block" %>
+          <%= form.text_field :active_ingredient, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :reference, style: "display: block" %>
+          <%= form.text_field :reference, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description, style: "display: block" %>
+          <%= form.text_field :description, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Cadastrar", class: "btn btn-success btn-user btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
