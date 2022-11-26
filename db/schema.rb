@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_125152) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_122728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_125152) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "active_ingredient"
+    t.string "reference"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "last_update_by_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["last_update_by_user_id"], name: "index_products_on_last_update_by_user_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_125152) do
 
   add_foreign_key "customers", "users"
   add_foreign_key "customers", "users", column: "last_update_by_user_id"
+  add_foreign_key "products", "users"
+  add_foreign_key "products", "users", column: "last_update_by_user_id"
 end

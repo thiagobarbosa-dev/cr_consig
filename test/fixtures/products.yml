@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  active_ingredient: MyString
+  reference: MyString
+  description: MyText
+  user: one
+  last_update_by_user_id: 1
+
+two:
+  name: MyString
+  active_ingredient: MyString
+  reference: MyString
+  description: MyText
+  user: two
+  last_update_by_user_id: 1

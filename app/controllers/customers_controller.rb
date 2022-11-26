@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers or /customers.json
   def index
     if params[:search].present?
-      filtered = Customer.where("company_name LIKE ? or trading_name LIKE ? or ein_number LIKE ?", 
+      filtered = Customer.where("company_name ILIKE ? or trading_name ILIKE ? or ein_number ILIKE ?", 
         "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order(:id).all
     else
       filtered = Customer.order(:id).all

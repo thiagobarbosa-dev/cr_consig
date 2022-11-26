@@ -1,0 +1,10 @@
+<div class="container">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-4 text-gray-800">Novo Produto</h1>
+  <%= link_to "Voltar à Lista de Produtos", products_path, class: 'btn btn-primary mb-4' %>
+<!-- Basic Card Example -->
+  <div class="card shadow mb-4">
+  <%= render "form", product: @product %>
+  </div>  
+</div>
+
