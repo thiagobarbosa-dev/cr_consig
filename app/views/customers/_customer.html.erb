@@ -1,0 +1,102 @@
+<div id="<%= dom_id customer %>">
+  <p>
+    <strong>Company name:</strong>
+    <%= customer.company_name %>
+  </p>
+
+  <p>
+    <strong>Trading name:</strong>
+    <%= customer.trading_name %>
+  </p>
+
+  <p>
+    <strong>Ein number:</strong>
+    <%= customer.ein_number %>
+  </p>
+
+  <p>
+    <strong>State tax:</strong>
+    <%= customer.state_tax_id %>
+  </p>
+
+  <p>
+    <strong>Municipal tax:</strong>
+    <%= customer.municipal_tax_id %>
+  </p>
+
+  <p>
+    <strong>Street:</strong>
+    <%= customer.street %>
+  </p>
+
+  <p>
+    <strong>Number:</strong>
+    <%= customer.number %>
+  </p>
+
+  <p>
+    <strong>Complement:</strong>
+    <%= customer.complement %>
+  </p>
+
+  <p>
+    <strong>Zip code:</strong>
+    <%= customer.zip_code %>
+  </p>
+
+  <p>
+    <strong>Main email:</strong>
+    <%= customer.main_email %>
+  </p>
+
+  <p>
+    <strong>Second email:</strong>
+    <%= customer.second_email %>
+  </p>
+
+  <p>
+    <strong>Third email:</strong>
+    <%= customer.third_email %>
+  </p>
+
+  <p>
+    <strong>Whatsapp number:</strong>
+    <%= customer.whatsapp_number %>
+  </p>
+
+  <p>
+    <strong>Main phone number:</strong>
+    <%= customer.main_phone_number %>
+  </p>
+
+  <p>
+    <strong>Second phone number:</strong>
+    <%= customer.second_phone_number %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+    <%= customer.country %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= customer.state %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= customer.city %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= customer.user.name %>
+  </p>
+
+  <p>
+    <strong>Last update by user:</strong>
+    <%= User.find(customer.last_update_by_user_id).name %>
+  </p>
+
+</div>

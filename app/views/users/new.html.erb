@@ -1,12 +1,9 @@
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Novo Usuário</h1>
+<div class="container">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-4 text-gray-800">Novo Usuário</h1>
+  <%= link_to "Voltar à Lista de Usuários", users_path, class: 'btn btn-primary mb-4' %>
 <!-- Basic Card Example -->
-<div class="card shadow mb-4">
+  <div class="card shadow mb-4">
   <%= render "form", user: @user %>
-</div>
-
-<br>
-
-<div>
-  <%= link_to "Voltar à Lista de Usuários", users_path, class: 'btn btn-primary' %>
+  </div>  
 </div>

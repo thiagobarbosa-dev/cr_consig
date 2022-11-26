@@ -3,20 +3,12 @@ class UsersController < ApplicationController
 
   def index
     if params[:search].present?
-      filtered = User.where("name LIKE ? or login LIKE ? or email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").all
+      filtered = User.where("name LIKE ? or login LIKE ? or email LIKE ?", 
+        "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order(:id).all
     else
-      filtered = User.all
+      filtered = User.order(:id).all
     end
     @pagy, @users = pagy(filtered.all, items: 10)
-
-    # respond_to do |format|
-      
-    #   if turbo_frame_request?
-    #     format.html { render partial: 'user', locals: { users: @users } }
-    #   else
-    #     format.html
-    #   end
-    # end
   end
 
   def show
