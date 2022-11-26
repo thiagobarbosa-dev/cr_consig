@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :customers do
+    collection do
+      get :states
+      get :cities
+    end
+  end
   devise_scope :user do
     authenticated :user do
       root 'dashboard#index', as: :authenticated_root

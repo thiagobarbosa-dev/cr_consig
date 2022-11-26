@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="col-lg-10">
+    <div class="card-body">
+      <%= form_with(model: customer) do |form| %>
+        <% if customer.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+            <ul>
+              <% customer.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= form.label :company_name, style: "display: block" %>
+          <%= form.text_field :company_name, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :trading_name, style: "display: block" %>
+          <%= form.text_field :trading_name, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :ein_number, style: "display: block" %>
+          <%= form.text_field :ein_number, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :state_tax_id, style: "display: block" %>
+          <%= form.text_field :state_tax_id, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :municipal_tax_id, style: "display: block" %>
+          <%= form.text_field :municipal_tax_id, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :street, style: "display: block" %>
+          <%= form.text_field :street, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :number, style: "display: block" %>
+          <%= form.text_field :number, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :complement, style: "display: block" %>
+          <%= form.text_field :complement, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :zip_code, style: "display: block" %>
+          <%= form.text_field :zip_code, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :main_email, style: "display: block" %>
+          <%= form.text_field :main_email, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :second_email, style: "display: block" %>
+          <%= form.text_field :second_email, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :third_email, style: "display: block" %>
+          <%= form.text_field :third_email, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :whatsapp_number, style: "display: block" %>
+          <%= form.text_field :whatsapp_number, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :main_phone_number, style: "display: block" %>
+          <%= form.text_field :main_phone_number, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :second_phone_number, style: "display: block" %>
+          <%= form.text_field :second_phone_number, class: "form-control form-control-user mb-2" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :country, style: "display: block" %>
+          <%= form.select :country, CS.countries.invert, { prompt: "Selecione um país:"} , { class: "form-select form-select-user mb-2", data: { controller: "country", action: "change->country#change" } }  %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :state, style: "display: block" %>
+          <%= form.select :state, @states ? @states : [], {}, { class: "form-select form-select-user mb-2", data: { controller: "state", action: "change->state#change" } } %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :city, style: "display: block" %>
+          <%= form.select :city, @cities ? @cities : [], {}, { class: "form-select form-select-user mb-2" } %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Cadastrar", class: "btn btn-success btn-user btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
