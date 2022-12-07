@@ -1,0 +1,5 @@
+<p style="color: green"><%= notice %></p>
+
+<%= turbo_stream.update nested_dom_id(@offer, OfferProduct.new), "" %>
+
+<%= turbo_stream.append "offer_products", @offer_product %>

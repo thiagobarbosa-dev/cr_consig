@@ -1,0 +1,12 @@
+<h1>Editing offer product</h1>
+
+<div>
+  <%= link_to "Back to offer products", offer_path(@offer) %>
+</div>
+
+<%= turbo_frame_tag @offer_product do %>
+  <%= render "form", quote: @quote, offer_product: @offer_product %>
+<% end %>
+
+<br>
+

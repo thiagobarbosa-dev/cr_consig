@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<div class="row">
+  <h2>Oferta: <%= @offer.id %></h2>
+  <div class="col align-self-end">
+    <%= link_to offers_path,
+      class: "btn btn-outline-secondary mb-2" do %>
+      <i class="fas fa-back"></i> Voltar à Lista
+    <% end %>
+  </div>
+</div>
+<%= render @offer %>
+
+
+
+<div>
+  <%= button_to "Destroy this offer", @offer, method: :delete %>
+</div>

@@ -1,0 +1,66 @@
+<div class="card mb-3">
+  <%= form_for([offer, offer_product]) do |form| %>
+    <% if offer_product.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(offer_product.errors.count, "error") %> prohibited this offer_product from being saved:</h2>
+        <ul>
+          <%= form_error_notification(offer_product) %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row mb-2 p-2">
+      <div>
+        <%= form.hidden_field :offer_id %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= form.label :product_id, style: "display: block" %>
+        <%= form.select :product_id,  Product.all.map { |p| ["#{p.name} - #{p.active_ingredient}", p.id]}, {}, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :quantity, style: "display: block" %>
+        <%= form.text_field :quantity, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :price, style: "display: block" %>
+        <%= form.number_field :price, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :price_with_icms, style: "display: block" %>
+        <%= form.text_field :price_with_icms, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :shipping_type_id, style: "display: block" %>
+        <%= form.select :shipping_type_id, ShippingType.all.map { |st| [st.code, st.id]}, {}, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :shipping_value, style: "display: block" %>
+        <%= form.text_field :shipping_value, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :subtotal, style: "display: block" %>
+        <%= form.text_field :subtotal, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label "Trocável", style: "display: block" %>
+        <%= form.check_box :exchangeable %>
+      </div>
+    </div>
+    <div class="mb-2">
+      <%= button_tag(type: 'submit', class: "btn btn-success", id: 'validForm', data: { turbo_frame: offer_product}) do %>
+        Salvar
+      <% end %>
+
+      <%= link_to "Cancelar", offer_path(offer), class: "btn btn-danger" %>
+    </div>
+  <% end %>
+  
+</div>
+

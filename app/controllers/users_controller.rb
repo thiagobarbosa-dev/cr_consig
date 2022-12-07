@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+  end
+
+  # DELETE /resource/sign_out
+  def destroy
+    super
   end
 
   # GET /users/new

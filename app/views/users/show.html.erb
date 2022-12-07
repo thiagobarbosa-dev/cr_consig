@@ -4,7 +4,10 @@
 <!-- Basic Card Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-  <%= link_to "Voltar à Lista de Usuários", users_path, class: 'btn btn-primary' %>
+    <%= link_to users_path,
+      class: "btn btn-outline-secondary mb-2" do %>
+      <i class="fas fa-back"></i> Voltar à Lista de Usuários
+    <% end %>
   </div>
 
   <%= render @user %>
