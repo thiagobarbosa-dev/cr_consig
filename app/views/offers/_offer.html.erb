@@ -1,0 +1,67 @@
+<%= turbo_frame_tag offer do %>
+
+  <div id="<%= dom_id offer %>">
+    <div class="card mb-3">
+      <form>
+        <div class="input-group mb-3">
+          <div class="row p-2">
+            <div class="col-sm-4">
+              <label for="offer_customer" class="form-label">Empresa: </label>
+              <input type="text" id="offer_customer" class="form-control" value="<%= offer.customer.company_name %>" readonly>
+            </div>
+            <div class="col-sm-3">
+              <label for="offer_contact" class="form-label">Contato: </label>
+              <input type="text" id="offer_contact" class="form-control" value="<%= offer.contact %>" readonly>
+            </div>
+            <div class="col-sm-3">
+              <label for="offer_phone_number" class="form-label">Telefone: </label>
+              <input type="text" id="offer_phone_number" class="form-control" value="<%= offer.phone_number %>" readonly>          
+            </div>
+            <div class="col-sm-3">
+              <label for="offer_user" class="form-label">Responsável: </label>
+              <input type="offer_user" id="customer" class="form-control" value="<%= User.find(offer.user_id).login %>" readonly>          
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <%= link_to [:new, offer, :offer_product],
+    data: { turbo_frame: nested_dom_id(offer, OfferProduct.new) }, 
+    class: "btn btn-success mb-3" do %>
+    <i class="fas fa-plus"></i> Adicionar Produto
+  <% end %>
+
+  <%= link_to [:edit, offer], 
+    class: "btn btn-primary mb-3" do %>
+    <i class="fas fa-edit"></i> Editar Cabeçalho
+  <% end %>
+
+  <%= turbo_frame_tag nested_dom_id(offer, OfferProduct.new) %>
+
+  <div class="table-responsive" style="width: 98vw">
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo com ICMS</th>
+          <th>Valor Frete</th>
+          <th>Tipo de Frete</th>
+          <th>Aceita Troca?</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="offer_products">
+      <%= turbo_frame_tag nested_dom_id(offer, "offer_products") do %>
+        <%= render offer.offer_products, offer: offer %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

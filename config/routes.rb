@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :offers do
+    resources :offer_products, except: [:index, :show]
+  end
+
+  resources :shipping_types
   resources :products
   resources :customers do
     collection do
@@ -6,21 +11,27 @@ Rails.application.routes.draw do
       get :cities
     end
   end
+
+  devise_for :users
+
   devise_scope :user do
     authenticated :user do
       root 'dashboard#index', as: :authenticated_root
+      get '/users/sign_out' => 'devise/sessions#destroy'
     end
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
-  devise_for :users
-  resources :users
 
-  get 'users/index'
+  resources :users do
+    get 'show', to: 'users#show', as: 'show'
+  end  
+  root to: 'dashboard#index'
+
 
   # get "dashboard/index"
-  root to: 'dashboard#index'
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

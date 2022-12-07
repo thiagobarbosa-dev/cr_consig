@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_122728) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_153606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_122728) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
+  create_table "offer_products", force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "product_id", null: false
+    t.decimal "quantity", precision: 12, scale: 4
+    t.decimal "price", precision: 12, scale: 4
+    t.decimal "price_with_icms", precision: 12, scale: 4
+    t.decimal "shipping_value", precision: 12, scale: 2
+    t.decimal "subtotal", precision: 18, scale: 2
+    t.boolean "exchangeable"
+    t.bigint "shipping_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_offer_products_on_offer_id"
+    t.index ["product_id"], name: "index_offer_products_on_product_id"
+    t.index ["shipping_type_id"], name: "index_offer_products_on_shipping_type_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.decimal "total", precision: 18, scale: 2
+    t.bigint "user_id", null: false
+    t.bigint "last_update_by_user_id"
+    t.string "contact"
+    t.string "phone_number", limit: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_offers_on_customer_id"
+    t.index ["last_update_by_user_id"], name: "index_offers_on_last_update_by_user_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "active_ingredient"
@@ -52,6 +83,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_122728) do
     t.datetime "updated_at", null: false
     t.index ["last_update_by_user_id"], name: "index_products_on_last_update_by_user_id"
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "shipping_types", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,6 +115,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_122728) do
 
   add_foreign_key "customers", "users"
   add_foreign_key "customers", "users", column: "last_update_by_user_id"
+  add_foreign_key "offer_products", "offers"
+  add_foreign_key "offer_products", "products"
+  add_foreign_key "offer_products", "shipping_types"
+  add_foreign_key "offers", "customers"
+  add_foreign_key "offers", "users"
+  add_foreign_key "offers", "users", column: "last_update_by_user_id"
   add_foreign_key "products", "users"
   add_foreign_key "products", "users", column: "last_update_by_user_id"
 end

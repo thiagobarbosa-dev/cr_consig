@@ -1,0 +1,9 @@
+<h1>Nova Oferta</h1>
+
+<%= link_to offers_path,
+  class: "btn btn-outline-secondary mb-2" do %>
+  <i class="fas fa-back"></i> Voltar à Lista
+<% end %>
+<br>
+<%= render "form", offer: @offer %>
+

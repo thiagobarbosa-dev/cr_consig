@@ -1,0 +1,22 @@
+<%= content_tag :tr, id: dom_id(offer_product) do %>
+  <td><%= offer_product.id %></td>
+  <td><%= "#{offer_product.product.name} - #{offer_product.product.active_ingredient}" %></td>
+  <td><%= offer_product.quantity %></td>
+  <td><%= offer_product.price_with_icms %></td>
+  <td><%= offer_product.shipping_value %></td>
+  <td><%= offer_product.shipping_type.code %></td>
+  <td><%= offer_product.exchangeable %></td>
+  <td><%= offer_product.subtotal %></td>
+  <td>
+    <div class="d-grid gap-2 d-md-flex ">
+      <%= link_to [:edit, @offer, offer_product],
+        class: "btn btn-primary btn-circle btn-sm" do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+      <%= button_to offer_offer_product_path(@offer, offer_product), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, 
+        class: "btn btn-danger btn-circle btn-sm" do %>
+        <i class="fas fa-trash"></i>
+      <% end %>
+    </div>
+  </td>
+<% end %>

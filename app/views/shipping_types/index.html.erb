@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Shipping types</h1>
+
+<div id="shipping_types">
+  <% @shipping_types.each do |shipping_type| %>
+    <%= render shipping_type %>
+    <p>
+      <%= link_to "Show this shipping type", shipping_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New shipping type", new_shipping_type_path %>

@@ -1,0 +1,93 @@
+<p style="color: green"><%= notice %></p>
+
+<!-- Page Heading -->
+<div class="mb-2">
+  <div class="d-flex ">
+    <h2 class="text-gray-800">Ofertas</h2>
+  </div>
+  <div class="d-flex">
+    <a href="<%= new_offer_path %>" class="btn btn-primary btn-icon-split">
+      <span class="icon text-white-50">
+        <i class="fas fa-flag"></i>
+      </span>
+      <span class="text">Nova Oferta</span>
+    </a>
+  </div>
+</div>
+<div class="d-flex flex-row-reverse mb-2 px-3">
+  <%= form_with url: offers_path, method: :get, data: { turbo_frame: "offers", 
+      turbo_action: "advance", controller: "search", action: "keyup->search#perform" } do %>
+  <%= text_field_tag "search", nil, placeholder: "Search",
+          class: "inline-block rounded-md border border-gray-200 px-3 py-2" %>
+  <% end %>
+</div>
+<div class="table-responsive" style="width: 98vw">
+  <%= turbo_frame_tag "offers" do %>
+  <table class="table table-hover table-dark table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Fornecedor</th>
+        <th>Contato</th>
+        <th>Telefone</th>
+        <th>Responsável</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @offers.each do |offer| %>
+        <tr>
+          <td><%= offer.id %></td>
+          <td><%= offer.customer.company_name %></td>
+          <td><%= offer.contact %></td>
+          <td><%= offer.phone_number %></td>
+          <td><%= offer.user.login %></td>
+          <td>
+            <a href="<%= offer_path(offer) %>" class="btn btn-primary btn-circle btn-sm">
+              <i class="fas fa-eye"></i>
+            </a>
+            <a href="<%= edit_offer_path(offer) %>" class="btn btn-primary btn-circle btn-sm">
+              <i class="fas fa-edit"></i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <table class="table table-light table-sm table-bordered mb-2">
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Quantidade</th>
+                  <th>Preço com ICMS</th>
+                  <th>Frete</th>
+                  <th>Tipo de Frete</th>
+                  <th>Aceita troca?</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% offer.offer_products.each do |offer_product| %>
+                <tr>
+                  <td><%= "#{offer_product.product.name} - #{offer_product.product.active_ingredient}" %></td>
+                  <td><%= offer_product.quantity %></td>
+                  <td><%= offer_product.price_with_icms %></td>
+                  <td><%= offer_product.shipping_value %></td>
+                  <td><%= offer_product.shipping_type.code %></td>
+                  <td><%= offer_product.exchangeable %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="9">
+          <%== pagy_bootstrap_nav(@pagy, link_extra: 'data-turbo-action="advance"') %>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <% end %>
+</div>
