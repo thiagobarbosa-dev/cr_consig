@@ -60,11 +60,6 @@ class OffersController < ApplicationController
     end
   end
 
-  def remove
-    order_product = OrderProduct.find(params[:order_product_id])
-    order_product.destroy!
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer

@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_153606) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_121334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "budget_products", force: :cascade do |t|
+    t.bigint "budget_id", null: false
+    t.bigint "product_id", null: false
+    t.decimal "quantity", precision: 12, scale: 4, default: "0.0"
+    t.decimal "price", precision: 12, scale: 4, default: "0.0"
+    t.decimal "price_with_icms", precision: 12, scale: 4, default: "0.0"
+    t.decimal "shipping_value", precision: 12, scale: 2, default: "0.0"
+    t.decimal "subtotal", precision: 18, scale: 2
+    t.boolean "exchangeable", default: false
+    t.bigint "shipping_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_budget_products_on_budget_id"
+    t.index ["product_id"], name: "index_budget_products_on_product_id"
+    t.index ["shipping_type_id"], name: "index_budget_products_on_shipping_type_id"
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.decimal "subtotal", precision: 18, scale: 2, default: "0.0"
+    t.bigint "user_id", null: false
+    t.bigint "last_update_by_user_id"
+    t.string "contact"
+    t.string "phone_number", limit: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_budgets_on_customer_id"
+    t.index ["last_update_by_user_id"], name: "index_budgets_on_last_update_by_user_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "company_name"
@@ -113,6 +144,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_153606) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "budget_products", "budgets"
+  add_foreign_key "budget_products", "products"
+  add_foreign_key "budget_products", "shipping_types"
+  add_foreign_key "budgets", "customers"
+  add_foreign_key "budgets", "users"
+  add_foreign_key "budgets", "users", column: "last_update_by_user_id"
   add_foreign_key "customers", "users"
   add_foreign_key "customers", "users", column: "last_update_by_user_id"
   add_foreign_key "offer_products", "offers"
