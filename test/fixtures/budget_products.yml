@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  budget: one
+  product: one
+  quantity: 9.99
+  price: 9.99
+  price_with_icms: 9.99
+  shipping_value: 9.99
+  subtotal: 9.99
+  exchangeable: false
+  shipping_type: one
+
+two:
+  budget: two
+  product: two
+  quantity: 9.99
+  price: 9.99
+  price_with_icms: 9.99
+  shipping_value: 9.99
+  subtotal: 9.99
+  exchangeable: false
+  shipping_type: two

@@ -47,9 +47,11 @@ class OfferProductsController < ApplicationController
   end
 
   private
+
     def set_offer
       @offer = Offer.find(params[:offer_id])
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_offer_product
       @offer_product = @offer.offer_products.find(params[:id])

@@ -1,0 +1,22 @@
+<%= content_tag :tr, id: dom_id(budget_product) do %>
+  <td><%= budget_product.id %></td>
+  <td><%= "#{budget_product.product.name} - #{budget_product.product.active_ingredient}" %></td>
+  <td><%= budget_product.quantity %></td>
+  <td><%= budget_product.price_with_icms %></td>
+  <td><%= budget_product.shipping_value %></td>
+  <td><%= budget_product.shipping_type.code %></td>
+  <td><%= budget_product.exchangeable %></td>
+  <td><%= budget_product.subtotal %></td>
+  <td>
+    <div class="d-grid gap-2 d-md-flex ">
+      <%= link_to [:edit, @budget, budget_product],
+        class: "btn btn-primary btn-circle btn-sm" do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+      <%= button_to budget_budget_product_path(@budget, budget_product), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, 
+        class: "btn btn-danger btn-circle btn-sm" do %>
+        <i class="fas fa-trash"></i>
+      <% end %>
+    </div>
+  </td>
+<% end %>
