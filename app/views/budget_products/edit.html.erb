@@ -1,0 +1,12 @@
+<h1>Editing budget product</h1>
+
+<div>
+  <%= link_to "Back to budget products", budget_path(@budget) %>
+</div>
+
+<%= turbo_frame_tag @budget_product do %>
+  <%= render "form", quote: @quote, budget_product: @budget_product %>
+<% end %>
+
+<br>
+

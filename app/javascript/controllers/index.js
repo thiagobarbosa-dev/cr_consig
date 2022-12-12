@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import CountryController from "./country_controller"
+application.register("country", CountryController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)
+
+import StateController from "./state_controller"
+application.register("state", StateController)

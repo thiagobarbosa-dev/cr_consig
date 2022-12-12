@@ -8,15 +8,24 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "fontawesome", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <!-- Sidebar-->
-    <%= render 'layouts/shared/sidebar' %>
-    <div class="container pt-4">
-      <p class="notice" style="color: green"><%= notice %></p>
-      <p class="alert" style="color: red"><%= alert if !notice.present? %></p>
-      <%= yield %>
+    <div id="wrapper">
+      <!-- Sidebar-->
+      <% if user_signed_in? %>
+        <%= render  "layouts/shared/sidebar" %>
+      <% end %>
+      <div id="content-wrapper" class="d-flex flex-column"">
+        <div id="content">
+          <div class="px-2">
+            <p class="notice" style="color: green"><%= notice %></p>
+            <p class="alert" style="color: red"><%= alert if !notice.present? %></p>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 

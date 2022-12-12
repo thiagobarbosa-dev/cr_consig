@@ -1,0 +1,48 @@
+<%= form_with(model: offer) do |form| %>
+  <div class="card mb-3 p-2 px-s">
+    <div class="row">
+      <% if @offer.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this @offer from being saved:</h2>
+
+          <ul>
+            <% @offer.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="col-sm-4">
+        <%= form.label :customer_id, style: "display: block" %>
+        <%= form.select :customer_id, Customer.all.map { |c| [ "#{c.company_name} - #{c.city}/#{c.state}" , c.id]}, {}, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :contact, style: "display: block" %>
+        <%= form.text_field :contact, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :phone_number, style: "display: block" %>
+        <%= form.text_field :phone_number, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label "Responsável", style: "display: block" %>
+        <%= form.select :user_id, User.all.map { |u| [u.login, u.id]}, {}, class: "form-control" %>
+      </div>
+
+      <div class="col-auto">
+        <%= form.label :total, style: "display: block" %>
+        <%= form.text_field :total, class: "form-control" %>
+      </div>  
+
+      <div class="p-2">
+        <%= button_tag(type: 'submit', class: "btn btn-primary", id: 'validForm') do %>
+          Salvar
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

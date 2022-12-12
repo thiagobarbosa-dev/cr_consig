@@ -1,0 +1,12 @@
+<% budget.budget_products.each do |budget_product| %>
+  <%= content_tag :tr do %>
+    <td><%= budget_product.id %></td>
+    <td><%= "#{budget_product.product.name} - #{budget_product.product.active_ingredient}" %></td>
+    <td><%= budget_product.quantity %></td>
+    <td><%= budget_product.price_with_icms %></td>
+    <td><%= budget_product.shipping_value %></td>
+    <td><%= budget_product.shipping_type.code %></td>
+    <td><%= budget_product.exchangeable %></td>
+    <td><%= budget_product.subtotal %></td>
+  <% end %>
+<% end %>

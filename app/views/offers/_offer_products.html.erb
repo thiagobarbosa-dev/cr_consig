@@ -1,0 +1,12 @@
+<% offer.offer_products.each do |offer_product| %>
+  <%= content_tag :tr do %>
+    <td><%= offer_product.id %></td>
+    <td><%= "#{offer_product.product.name} - #{offer_product.product.active_ingredient}" %></td>
+    <td><%= offer_product.quantity %></td>
+    <td><%= offer_product.price_with_icms %></td>
+    <td><%= offer_product.shipping_value %></td>
+    <td><%= offer_product.shipping_type.code %></td>
+    <td><%= offer_product.exchangeable %></td>
+    <td><%= offer_product.subtotal %></td>
+  <% end %>
+<% end %>

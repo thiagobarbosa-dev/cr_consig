@@ -1,0 +1,11 @@
+<h1>New offer product</h1>
+
+<%= turbo_frame_tag nested_dom_id(@offer, OfferProduct.new) do %>
+  <%= render "form", offer: @offer, offer_product: @offer_product %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to offer", offer_path(@offer) %>
+</div>

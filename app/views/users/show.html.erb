@@ -1,0 +1,15 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Detalhes do Usuário</h1>
+
+<!-- Basic Card Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <%= link_to users_path,
+      class: "btn btn-outline-secondary mb-2" do %>
+      <i class="fas fa-back"></i> Voltar à Lista de Usuários
+    <% end %>
+  </div>
+
+  <%= render @user %>
+
+</div>

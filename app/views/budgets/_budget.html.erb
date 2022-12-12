@@ -1,0 +1,67 @@
+<%= turbo_frame_tag budget do %>
+
+  <div id="<%= dom_id budget %>">
+    <div class="card mb-3">
+      <form>
+        <div class="input-group mb-3">
+          <div class="row p-2">
+            <div class="col-sm-4">
+              <label for="budget_customer" class="form-label">Empresa: </label>
+              <input type="text" id="budget_customer" class="form-control" value="<%= budget.customer.company_name %>" readonly>
+            </div>
+            <div class="col-sm-3">
+              <label for="budget_contact" class="form-label">Contato: </label>
+              <input type="text" id="budget_contact" class="form-control" value="<%= budget.contact %>" readonly>
+            </div>
+            <div class="col-sm-3">
+              <label for="budget_phone_number" class="form-label">Telefone: </label>
+              <input type="text" id="budget_phone_number" class="form-control" value="<%= budget.phone_number %>" readonly>          
+            </div>
+            <div class="col-sm-3">
+              <label for="budget_user" class="form-label">Responsável: </label>
+              <input type="budget_user" id="customer" class="form-control" value="<%= User.find(budget.user_id).login %>" readonly>          
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <%= link_to [:new, budget, :budget_product],
+    data: { turbo_frame: nested_dom_id(budget, BudgetProduct.new) }, 
+    class: "btn btn-success mb-3" do %>
+    <i class="fas fa-plus"></i> Adicionar Produto
+  <% end %>
+
+  <%= link_to [:edit, budget], 
+    class: "btn btn-primary mb-3" do %>
+    <i class="fas fa-edit"></i> Editar Cabeçalho
+  <% end %>
+
+  <%= turbo_frame_tag nested_dom_id(budget, BudgetProduct.new) %>
+
+  <div class="table-responsive" style="width: 98vw">
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo com ICMS</th>
+          <th>Valor Frete</th>
+          <th>Tipo de Frete</th>
+          <th>Aceita Troca?</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="budget_products">
+      <%= turbo_frame_tag nested_dom_id(budget, "budget_products") do %>
+        <%= render budget.budget_products, budget: budget %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

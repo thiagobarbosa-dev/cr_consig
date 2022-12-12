@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<div class="row">
+  <h2>Cotação: <%= @budget.id %></h2>
+  <div class="col align-self-end">
+    <%= link_to budgets_path,
+      class: "btn btn-outline-secondary mb-2" do %>
+      <i class="fas fa-back"></i> Voltar à Lista
+    <% end %>
+  </div>
+</div>
+<%= render @budget %>
+
+
+
+<div>
+  <%= button_to "Destroy this budget", @budget, method: :delete %>
+</div>
