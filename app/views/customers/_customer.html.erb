@@ -1,102 +1,91 @@
 <div id="<%= dom_id customer %>">
-  <p>
-    <strong>Company name:</strong>
-    <%= customer.company_name %>
-  </p>
-
-  <p>
-    <strong>Trading name:</strong>
-    <%= customer.trading_name %>
-  </p>
-
-  <p>
-    <strong>Ein number:</strong>
-    <%= customer.ein_number %>
-  </p>
-
-  <p>
-    <strong>State tax:</strong>
-    <%= customer.state_tax_id %>
-  </p>
-
-  <p>
-    <strong>Municipal tax:</strong>
-    <%= customer.municipal_tax_id %>
-  </p>
-
-  <p>
-    <strong>Street:</strong>
-    <%= customer.street %>
-  </p>
-
-  <p>
-    <strong>Number:</strong>
-    <%= customer.number %>
-  </p>
-
-  <p>
-    <strong>Complement:</strong>
-    <%= customer.complement %>
-  </p>
-
-  <p>
-    <strong>Zip code:</strong>
-    <%= customer.zip_code %>
-  </p>
-
-  <p>
-    <strong>Main email:</strong>
-    <%= customer.main_email %>
-  </p>
-
-  <p>
-    <strong>Second email:</strong>
-    <%= customer.second_email %>
-  </p>
-
-  <p>
-    <strong>Third email:</strong>
-    <%= customer.third_email %>
-  </p>
-
-  <p>
-    <strong>Whatsapp number:</strong>
-    <%= customer.whatsapp_number %>
-  </p>
-
-  <p>
-    <strong>Main phone number:</strong>
-    <%= customer.main_phone_number %>
-  </p>
-
-  <p>
-    <strong>Second phone number:</strong>
-    <%= customer.second_phone_number %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= customer.country %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= customer.state %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= customer.city %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= customer.user.name %>
-  </p>
-
-  <p>
-    <strong>Last update by user:</strong>
-    <%= User.find(customer.last_update_by_user_id).name %>
-  </p>
-
+  <!-- DataTales Example -->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <tbody>
+          <tr>
+            <td>Razão Social:</td>
+            <td><%= customer.company_name %></td>
+          </tr>
+          <tr>
+            <td>Nome Fantasia:</td>
+            <td><%= customer.trading_name %></td>
+          </tr>
+          <tr>
+            <td>CNPJ:</td>
+            <td><%= customer.ein_number %></td>
+          </tr>
+          <tr>
+            <td>Inscrição Estadual:</td>
+            <td><%= customer.state_tax_id %></td>
+          </tr>
+          <tr>
+            <td>Inscrição Estadual:</td>
+            <td><%= customer.municipal_tax_id %></td>
+          </tr>
+          <tr>
+            <td>Inscrição Estadual:</td>
+            <td><%= customer.street %></td>
+          </tr>
+          <tr>
+            <td>Inscrição Estadual:</td>
+            <td><%= customer.number %></td>
+          </tr>
+          <tr>
+            <td>Inscrição Estadual:</td>
+            <td><%= customer.complement %></td>
+          </tr>
+          <tr>
+            <td>Zip code:</td>
+            <td><%= customer.zip_code %></td>
+          </tr>
+          <tr>
+            <td>Main email:</td>
+            <td><%= customer.main_email %></td>
+          </tr>
+          <tr>
+            <td>Second email:</td>
+            <td><%= customer.second_email %></td>
+          </tr>
+          <tr>
+            <td>Third email:</td>
+            <td><%= customer.third_email %></td>
+          </tr>
+          <tr>
+            <td>Whatsapp number:</td>
+            <td><%= customer.whatsapp_number %></td>
+          </tr>
+          <tr>
+            <td>Main phone number:</td>
+            <td><%= customer.main_phone_number %></td>
+          </tr>
+          <tr>
+            <td>Second phone number:</td>
+            <td><%= customer.second_phone_number %></td>
+          </tr>
+          <tr>
+            <td>Country:</td>
+            <td><%= customer.country %></td>
+          </tr>
+          <tr>
+            <td>State:</td>
+            <td><%= customer.state %></td>
+          </tr>
+          <tr>
+            <td>City:</td>
+            <td><%= customer.city %></td>
+          </tr>
+          <tr>
+            <td>User:</td>
+            <td><%= customer.user.name %></td>
+          </tr>
+          <tr>
+            <td>Last update by customer:</td>
+            <td><%= User.find(customer.last_update_by_user_id).name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
