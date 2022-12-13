@@ -28,7 +28,7 @@ append :linked_files, "config/database.yml", 'config/master.key'
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { path: "~/.asdf/installs/ruby/3.1.2/bin:$PATH" }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -84,11 +84,24 @@ namespace :rails do
 end
 
 namespace :deploy do
+  namespace :check do
+    before :linked_files, :set_master_key do
+      on roles(:app), in: :sequence, wait: 10 do
+        unless test("[ -f #{shared_path}/config/master.key ]")
+          upload! 'config/master.key', "#{shared_path}/config/master.key"
+        end
+      end
+    end
+  end
+  
   desc 'Restart application'
     task :restart do
       invoke 'puma:stop'
       invoke 'puma:start'
   end
+
+  before :updated, 'yarn:install'
+  before :updated, 'yarn:build'
 
   after  :finishing,    :cleanup
   after  :finishing,    :restart
@@ -105,10 +118,25 @@ task :invoke, [:command] => 'deploy:set_rails_env' do |task, args|
   end
 end
 
-# Spinner load method
-def show_spinner(start_msg, end_msg = "Finished.")
-  spinner = TTY::Spinner.new("[:spinner] #{start_msg}")
-  spinner.auto_spin
-  yield
-  spinner.success("#{end_msg}")
+namespace :yarn do
+  desc 'Install yarn dependencies'
+  task :install do
+    on roles(:app) do
+      within release_path do
+        execute :yarn, :install
+      end
+    end
+  end
+
+  desc 'yarn dependencies'
+  task :build do
+    on roles(:app) do
+      within release_path do
+        with node_env: :production do
+          execute :yarn, :build
+          execute :yarn, 'build:css'
+        end
+      end
+    end
+  end
 end

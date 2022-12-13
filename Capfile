@@ -40,7 +40,7 @@ require 'capistrano/rails/collection'
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Workers
 install_plugin Capistrano::Puma::Nginx
-install_plugin Capistrano::Puma::Daemon
+# install_plugin Capistrano::Puma::Daemon
 install_plugin Capistrano::Puma::Systemd
 
 
