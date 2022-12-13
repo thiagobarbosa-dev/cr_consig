@@ -124,6 +124,7 @@ namespace :yarn do
     on roles(:app) do
       within release_path do
         execute :yarn, :install
+        execute :yarn, 'add sass'
       end
     end
   end
@@ -135,6 +136,7 @@ namespace :yarn do
         with node_env: :production do
           execute :yarn, :build
           execute :yarn, 'build:css'
+          execute :yarn, 'build:css:fontawesome'
         end
       end
     end
