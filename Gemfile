@@ -79,10 +79,11 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "capistrano"
+  gem 'capistrano-asdf', require: false
   gem "capistrano-rails", require: false
   gem 'capistrano3-puma', require: false
   gem 'capistrano-rails-collection', require: false
-  gem 'capistrano-bundler',          require: false
+  gem 'capistrano-bundler', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

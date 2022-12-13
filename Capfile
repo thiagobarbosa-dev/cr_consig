@@ -30,17 +30,19 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
 require "capistrano/bundler"
+require "capistrano/asdf"
 # require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 require "capistrano/puma"
 require 'capistrano/rails/collection'
 
-
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Workers
 install_plugin Capistrano::Puma::Nginx
 install_plugin Capistrano::Puma::Daemon
+install_plugin Capistrano::Puma::Systemd
+
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
