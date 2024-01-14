@@ -38,3 +38,4 @@
 .byebug_history
 .vscode
 /config/database.yml
+/.tool-versions

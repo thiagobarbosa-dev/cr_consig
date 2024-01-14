@@ -1,24 +1,40 @@
-# README
+# CR Consig - 1.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Sem Kamal
+### Dependências
+  
+  - Ruby 3.1.2
+  - Rails 7.0.4
+  - NPM > 7.1
 
-Things you may want to cover:
+Após instalar o Ruby com o gerenciador de versões de preferência instale as gems:
 
-* Ruby version
+```console
+bundle install
+```
 
-* System dependencies
+Crie o Banco de Dados:
 
-* Configuration
+```console
+rails db:create db:migrate
+```
 
-* Database creation
+Rode o seeds:
 
-* Database initialization
+```console
+rails db:seed
+```
 
-* How to run the test suite
+Verifique se já tem o npm e depois rode:
 
-* Services (job queues, cache servers, search engines, etc.)
+```console
+npm install
+```
 
-* Deployment instructions
+Suba o servidor:
 
-* ...
+```console
+bin/dev
+```
+
+
