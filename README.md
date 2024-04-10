@@ -1,7 +1,24 @@
 # CR Consig - 1.0
 
-## Sem Kamal
-### Dependências
+### Sistema desenvolvido sob demanda para intermediação de compra e venda de insumos agrícolas.
+
+### Funcionalidades:
+
+  - Cadastro de Clientes;
+  - Cadastro de Produtos;
+  - Cadastro de Usuários;
+  - Cadastro de Orçamentos;
+  - Cadastro de Ofertas.
+
+### Features ainda em desenvolvimento:
+  
+  - Linkagem de produto Ofertado com Orçado;
+  - Exportação de dados via XLSX e PDF;
+  - Importação de cadastros via CSV ou XLSX;
+  - Internacionalização.
+
+
+## Dependências
   
   - Ruby 3.1.2
   - Rails 7.0.4
