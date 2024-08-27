@@ -111,7 +111,7 @@ The cr_consig platform connects producers and buyers of agricultural products, m
 6. Inicie o servidor:  
    Start the server:  
    ```bash
-   rails s
+   bin/dev
    ```
 
 ---
